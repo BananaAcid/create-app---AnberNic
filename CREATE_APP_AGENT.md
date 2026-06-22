@@ -795,6 +795,13 @@ while True:
 
 ## Sound Playback
 
+### SDL Mixer
+
+Best method: SDL is used already - use SDL Mixer
+
+Works the best.
+
+### `aplay` (and ffplay) simple but only 1 process can play
 Use `aplay` via `subprocess` to play `.wav` files. Reference the sound file via a path relative to the app directory:
 
 ```python
@@ -807,7 +814,7 @@ sound_file = os.path.join(script_dir, 'sound', 'sound.wav')
 subprocess.run(["aplay", sound_file], check=True)
 ```
 
-For vibration (clock timer uses the motor hardware):
+### For vibration (clock timer uses the motor hardware):
 
 ```python
 subprocess.run("echo 1 > /sys/class/power_supply/axp2202-battery/moto && sleep 0.3 && echo 0 > /sys/class/power_supply/axp2202-battery/moto && sleep 0.1", shell=True, check=True)
@@ -843,6 +850,8 @@ The device running these apps is an **Anbernic RG40xxV** with the following spec
 | **Python bindings** | PySDL2 at `/usr/lib/python3/dist-packages/sdl2/` (full module with ext, image, ttf, mixer) |
 | **Pillow** | 9.0.1 |
 | **Python** | 3.10.12 |
+
+SDL Audio Mixer is available.
 
 ### App Runtime Behavior
 
